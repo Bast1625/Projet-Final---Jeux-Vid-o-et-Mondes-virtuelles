@@ -1,0 +1,56 @@
+private IEnumerator DraggingSequence(Head head)
+    {
+        while(true)
+        {
+            float xInput = head.GetMouseInputs().x;
+            float yInput = head.GetMouseInputs().y * -1;
+            float bothInput = xInput + yInput;
+
+            float inputDirection = Math.Sign(bothInput);
+
+            float trueBothInput = Math.Clamp(
+                new Vector2(xInput, yInput).magnitude, 
+                0, 2.5f
+            ) * inputDirection;
+
+            float dotProduct = Utility.CalculateDotProductPosition(transform, head.transform);
+            float dragForce = trueBothInput * 2.5f * Math.Sign(dotProduct);
+
+            velocity = dragForce;
+
+            UpdateRotation(velocity, false);
+
+            yield return null;
+        }
+    }
+    private IEnumerator MomentumSequence(float initialVelocity, float acceleration)
+    {
+        float trueVelocity = initialVelocity * attenuator;
+        float trueAcceleration = acceleration * attenuator;
+
+        velocity = trueVelocity;
+
+        float velocityDirection = Math.Sign(trueVelocity);
+        float accelerationDirection = Math.Sign(trueAcceleration);
+
+        while ((accelerationDirection == 1 && velocity < 0) || (accelerationDirection == -1 && velocity > 0))
+        {
+            UpdateRotation(velocity);   
+            
+            if(Wideness == 100f)                
+                break;
+            
+            if(Wideness == 0f)
+            {
+                Close();
+
+                break;
+            }
+            
+            velocity += trueAcceleration;
+
+            yield return null;
+        }
+
+        velocity = 0f;
+    }

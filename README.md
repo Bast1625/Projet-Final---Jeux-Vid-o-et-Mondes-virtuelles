@@ -1,8 +1,9 @@
 Ce jeu vidéo est particulier puisque les véritables mesures d'une partie du département informatique ont été utilisées pour construire la scène. 
 En seulement quelques semaines, il a fallu prendre les mesures, partiellement recréer le département et développer des mécaniques de jeu répondants aux critères d'évaluation.
+D'ailleurs, le code derrière a été pensé autour de certains principes importants de la programmation tel que le clean code et la modularité.
 Pour pouvoir le réaliser, il a fallu de la détermination, de l'attention aux détails et surtout de la persévérance durant la moitié de la session.
 
-Le moteur de jeu utilisé est Unity.
+Le moteur de jeu utilisé est Unity (C#).
 
 Merci à mes amis de m'avoir aidé lors de la prise des mesures et à mon frère pour avoir recrée la scène en 3D.
 
